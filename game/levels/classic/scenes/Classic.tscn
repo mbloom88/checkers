@@ -1,0 +1,143 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://levels/level/scenes/Level.tscn" type="PackedScene" id=1]
+[ext_resource path="res://levels/classic/tilesets/classic.tres" type="TileSet" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 256, 32 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 256, 32 )
+
+[node name="Classic" index="0" instance=ExtResource( 1 )]
+black_piece = "res://actors/black_piece/scenes/BlackPiece.tscn"
+red_piece = "res://actors/red_piece/scenes/RedPiece.tscn"
+
+[node name="Camera2D" parent="." index="0"]
+position = Vector2( 960, 576 )
+current = true
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+smoothing_enabled = true
+smoothing_speed = 10.0
+
+[node name="BaseLayer" parent="." index="1"]
+tile_set = ExtResource( 2 )
+tile_data = PoolIntArray( 327691, 2, 0, 327692, 1, 0, 327693, 2, 0, 327694, 1, 0, 327695, 2, 0, 327696, 1, 0, 327697, 2, 0, 327698, 1, 0, 393227, 1, 0, 393228, 2, 0, 393229, 1, 0, 393230, 2, 0, 393231, 1, 0, 393232, 2, 0, 393233, 1, 0, 393234, 2, 0, 458763, 2, 0, 458764, 1, 0, 458765, 2, 0, 458766, 1, 0, 458767, 2, 0, 458768, 1, 0, 458769, 2, 0, 458770, 1, 0, 524299, 1, 0, 524300, 2, 0, 524301, 1, 0, 524302, 2, 0, 524303, 1, 0, 524304, 2, 0, 524305, 1, 0, 524306, 2, 0, 589835, 2, 0, 589836, 1, 0, 589837, 2, 0, 589838, 1, 0, 589839, 2, 0, 589840, 1, 0, 589841, 2, 0, 589842, 1, 0, 655371, 1, 0, 655372, 2, 0, 655373, 1, 0, 655374, 2, 0, 655375, 1, 0, 655376, 2, 0, 655377, 1, 0, 655378, 2, 0, 720907, 2, 0, 720908, 1, 0, 720909, 2, 0, 720910, 1, 0, 720911, 2, 0, 720912, 1, 0, 720913, 2, 0, 720914, 1, 0, 786443, 1, 0, 786444, 2, 0, 786445, 1, 0, 786446, 2, 0, 786447, 1, 0, 786448, 2, 0, 786449, 1, 0, 786450, 2, 0 )
+
+[node name="Black" parent="Goals" index="0"]
+position = Vector2( 960, 800 )
+
+[node name="CollisionShape2D" parent="Goals/Black" index="0"]
+shape = SubResource( 1 )
+
+[node name="BlackGoalColor" parent="Goals/Black" index="1"]
+margin_left = -256.0
+margin_top = -32.0
+margin_right = 256.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 512, 64 )
+
+[node name="Red" parent="Goals" index="1"]
+position = Vector2( 960, 352 )
+
+[node name="CollisionShape2D" parent="Goals/Red" index="0"]
+shape = SubResource( 2 )
+
+[node name="RedGoalColor" parent="Goals/Red" index="1"]
+margin_left = -256.0
+margin_top = -32.0
+margin_right = 256.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 512, 64 )
+
+[node name="Piece1" parent="BlackStartingPositions" index="0"]
+position = Vector2( 800, 352 )
+
+[node name="Piece2" parent="BlackStartingPositions" index="1"]
+position = Vector2( 928, 352 )
+
+[node name="Piece3" parent="BlackStartingPositions" index="2"]
+position = Vector2( 1056, 352 )
+
+[node name="Piece4" parent="BlackStartingPositions" index="3"]
+position = Vector2( 1184, 352 )
+
+[node name="Piece5" parent="BlackStartingPositions" index="4"]
+position = Vector2( 736, 416 )
+
+[node name="Piece6" parent="BlackStartingPositions" index="5"]
+position = Vector2( 864, 416 )
+
+[node name="Piece7" parent="BlackStartingPositions" index="6"]
+position = Vector2( 992, 416 )
+
+[node name="Piece8" parent="BlackStartingPositions" index="7"]
+position = Vector2( 1120, 416 )
+
+[node name="Piece9" parent="BlackStartingPositions" index="8"]
+position = Vector2( 800, 480 )
+
+[node name="Piece10" parent="BlackStartingPositions" index="9"]
+position = Vector2( 928, 480 )
+
+[node name="Piece11" parent="BlackStartingPositions" index="10"]
+position = Vector2( 1056, 480 )
+
+[node name="Piece12" parent="BlackStartingPositions" index="11"]
+position = Vector2( 1184, 480 )
+
+[node name="Piece1" parent="RedStartingPositions" index="0"]
+position = Vector2( 736, 672 )
+
+[node name="Piece2" parent="RedStartingPositions" index="1"]
+position = Vector2( 864, 672 )
+
+[node name="Piece3" parent="RedStartingPositions" index="2"]
+position = Vector2( 992, 672 )
+
+[node name="Piece4" parent="RedStartingPositions" index="3"]
+position = Vector2( 1120, 672 )
+
+[node name="Piece5" parent="RedStartingPositions" index="4"]
+position = Vector2( 800, 736 )
+
+[node name="Piece6" parent="RedStartingPositions" index="5"]
+position = Vector2( 928, 736 )
+
+[node name="Piece7" parent="RedStartingPositions" index="6"]
+position = Vector2( 1056, 736 )
+
+[node name="Piece8" parent="RedStartingPositions" index="7"]
+position = Vector2( 1184, 736 )
+
+[node name="Piece9" parent="RedStartingPositions" index="8"]
+position = Vector2( 736, 800 )
+
+[node name="Piece10" parent="RedStartingPositions" index="9"]
+position = Vector2( 864, 800 )
+
+[node name="Piece11" parent="RedStartingPositions" index="10"]
+position = Vector2( 992, 800 )
+
+[node name="Piece12" parent="RedStartingPositions" index="11"]
+position = Vector2( 1120, 800 )
+
+[node name="BlackTeamPanel" parent="FrontInterface" index="0"]
+margin_left = 166.153
+margin_top = 287.798
+margin_right = 666.153
+margin_bottom = 787.798
+
+[node name="RedTeamPanel" parent="FrontInterface" index="1"]
+margin_left = 1250.28
+margin_top = 287.798
+margin_right = 1750.28
+margin_bottom = 787.798
+
+[node name="TurnPanel" parent="FrontInterface" index="2"]
+margin_top = -412.0
+margin_bottom = -290.0
+
+[connection signal="area_entered" from="Goals/Black" to="Goals" method="_on_Black_area_entered"]
+[connection signal="area_entered" from="Goals/Red" to="Goals" method="_on_Red_area_entered"]

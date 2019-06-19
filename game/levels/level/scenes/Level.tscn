@@ -1,0 +1,179 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://levels/level/scripts/level.gd" type="Script" id=1]
+[ext_resource path="res://levels/level/scripts/base-layer.gd" type="Script" id=2]
+[ext_resource path="res://levels/level/scripts/goals.gd" type="Script" id=3]
+[ext_resource path="res://levels/level/scripts/goal-color.gd" type="Script" id=4]
+[ext_resource path="res://levels/level/animations/goal_color/SETUP.tres" type="Animation" id=5]
+[ext_resource path="res://levels/level/animations/goal_color/activated.tres" type="Animation" id=6]
+[ext_resource path="res://levels/level/animations/goal_color/deactivated.tres" type="Animation" id=7]
+[ext_resource path="res://levels/level/prefabs/team_panel/scenes/TeamPanel.tscn" type="PackedScene" id=8]
+[ext_resource path="res://levels/level/prefabs/turn_panel/scenes/TurnPanel.tscn" type="PackedScene" id=9]
+[ext_resource path="res://levels/level/prefabs/announcements/scenes/Announcements.tscn" type="PackedScene" id=10]
+[ext_resource path="res://levels/level/scripts/cell-vectors.gd" type="Script" id=11]
+[ext_resource path="res://levels/level/scripts/debug-piece-types.gd" type="Script" id=12]
+
+[node name="Level" type="Node"]
+script = ExtResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 960, 540 )
+
+[node name="BaseLayer" type="TileMap" parent="."]
+format = 1
+script = ExtResource( 2 )
+
+[node name="Goals" type="Node2D" parent="."]
+editor/display_folded = true
+script = ExtResource( 3 )
+
+[node name="Black" type="Area2D" parent="Goals"]
+position = Vector2( 153.749, 0 )
+input_pickable = false
+collision_layer = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goals/Black"]
+
+[node name="BlackGoalColor" type="ColorRect" parent="Goals/Black"]
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 0, 0, 0, 1 )
+script = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Goals/Black/BlackGoalColor"]
+anims/SETUP = ExtResource( 5 )
+anims/activated = ExtResource( 6 )
+anims/deactivated = ExtResource( 7 )
+
+[node name="Red" type="Area2D" parent="Goals"]
+input_pickable = false
+collision_layer = 8
+collision_mask = 2
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goals/Red"]
+
+[node name="RedGoalColor" type="ColorRect" parent="Goals/Red"]
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 1, 0, 0, 1 )
+script = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Goals/Red/RedGoalColor"]
+anims/SETUP = ExtResource( 5 )
+anims/activated = ExtResource( 6 )
+anims/deactivated = ExtResource( 7 )
+
+[node name="BlackPieces" type="Node2D" parent="."]
+
+[node name="RedPieces" type="Node2D" parent="."]
+
+[node name="BlackStartingPositions" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="Piece1" type="Position2D" parent="BlackStartingPositions"]
+
+[node name="Piece2" type="Position2D" parent="BlackStartingPositions"]
+
+[node name="Piece3" type="Position2D" parent="BlackStartingPositions"]
+
+[node name="Piece4" type="Position2D" parent="BlackStartingPositions"]
+
+[node name="Piece5" type="Position2D" parent="BlackStartingPositions"]
+
+[node name="Piece6" type="Position2D" parent="BlackStartingPositions"]
+
+[node name="Piece7" type="Position2D" parent="BlackStartingPositions"]
+
+[node name="Piece8" type="Position2D" parent="BlackStartingPositions"]
+
+[node name="Piece9" type="Position2D" parent="BlackStartingPositions"]
+
+[node name="Piece10" type="Position2D" parent="BlackStartingPositions"]
+
+[node name="Piece11" type="Position2D" parent="BlackStartingPositions"]
+
+[node name="Piece12" type="Position2D" parent="BlackStartingPositions"]
+
+[node name="RedStartingPositions" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="Piece1" type="Position2D" parent="RedStartingPositions"]
+
+[node name="Piece2" type="Position2D" parent="RedStartingPositions"]
+
+[node name="Piece3" type="Position2D" parent="RedStartingPositions"]
+
+[node name="Piece4" type="Position2D" parent="RedStartingPositions"]
+
+[node name="Piece5" type="Position2D" parent="RedStartingPositions"]
+
+[node name="Piece6" type="Position2D" parent="RedStartingPositions"]
+
+[node name="Piece7" type="Position2D" parent="RedStartingPositions"]
+
+[node name="Piece8" type="Position2D" parent="RedStartingPositions"]
+
+[node name="Piece9" type="Position2D" parent="RedStartingPositions"]
+
+[node name="Piece10" type="Position2D" parent="RedStartingPositions"]
+
+[node name="Piece11" type="Position2D" parent="RedStartingPositions"]
+
+[node name="Piece12" type="Position2D" parent="RedStartingPositions"]
+
+[node name="FrontInterface" type="CanvasLayer" parent="."]
+
+[node name="BlackTeamPanel" parent="FrontInterface" instance=ExtResource( 8 )]
+margin_left = 110.232
+margin_top = 327.356
+margin_right = 610.232
+margin_bottom = 827.356
+side_color = "Black"
+
+[node name="RedTeamPanel" parent="FrontInterface" instance=ExtResource( 8 )]
+margin_left = 1229.26
+margin_top = 344.058
+margin_right = 1729.26
+margin_bottom = 844.058
+side_color = "Red"
+
+[node name="TurnPanel" parent="FrontInterface" instance=ExtResource( 9 )]
+margin_top = -202.29
+margin_bottom = -162.29
+
+[node name="Announcements" parent="FrontInterface" instance=ExtResource( 10 )]
+
+[node name="Debug" type="Control" parent="."]
+editor/display_folded = true
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+
+[node name="CellVectors" type="Control" parent="Debug" groups=[
+"debug",
+]]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 11 )
+
+[node name="PieceTypes" type="Control" parent="Debug" groups=[
+"debug",
+]]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+script = ExtResource( 12 )
+
+[connection signal="king_event" from="Goals" to="." method="_on_Goals_king_event"]
+[connection signal="body_entered" from="Goals/Black" to="Goals" method="_on_Black_body_entered"]
+[connection signal="body_entered" from="Goals/Red" to="Goals" method="_on_Red_body_entered"]
+[connection signal="show_goal" from="FrontInterface/BlackTeamPanel" to="." method="_on_TeamPanel_show_goal"]
+[connection signal="show_goal" from="FrontInterface/RedTeamPanel" to="." method="_on_TeamPanel_show_goal"]
+[connection signal="time_is_up" from="FrontInterface/TurnPanel" to="." method="_on_TurnPanel_time_is_up"]
+[connection signal="update_labels" from="Debug/PieceTypes" to="." method="_on_PieceTypes_update_labels"]

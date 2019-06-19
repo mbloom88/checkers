@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://levels/level/prefabs/announcements/themes/primary.tres" type="Theme" id=1]
+[ext_resource path="res://levels/level/prefabs/announcements/scripts/announcements.gd" type="Script" id=2]
+[ext_resource path="res://levels/level/prefabs/announcements/animations/SETUP-play-on.tres" type="Animation" id=3]
+[ext_resource path="res://levels/level/prefabs/announcements/animations/SETUP-ready.tres" type="Animation" id=4]
+[ext_resource path="res://levels/level/prefabs/announcements/animations/idle.tres" type="Animation" id=5]
+[ext_resource path="res://levels/level/prefabs/announcements/animations/ready-play-on.tres" type="Animation" id=6]
+
+[node name="Announcements" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/SETUP-play-on = ExtResource( 3 )
+anims/SETUP-ready = ExtResource( 4 )
+anims/idle = ExtResource( 5 )
+anims/ready-play-on = ExtResource( 6 )
+
+[node name="Background" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -960.0
+margin_top = -1620.0
+margin_right = 960.0
+margin_bottom = -540.0
+
+[node name="Ready" type="Label" parent="CenterContainer"]
+margin_left = 595.0
+margin_top = 423.0
+margin_right = 1325.0
+margin_bottom = 656.0
+grow_horizontal = 2
+rect_pivot_offset = Vector2( 365, 125 )
+text = "Ready?"
+align = 1
+valign = 1
+
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PlayOn" type="Label" parent="CenterContainer2"]
+margin_left = 550.0
+margin_top = 415.0
+margin_right = 1370.0
+margin_bottom = 665.0
+grow_horizontal = 2
+rect_min_size = Vector2( 820, 250 )
+rect_pivot_offset = Vector2( 410, 125 )
+text = "Play On!"
+align = 1
+valign = 1
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

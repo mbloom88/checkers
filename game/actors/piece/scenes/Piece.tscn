@@ -1,0 +1,87 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://actors/piece/scripts/piece.gd" type="Script" id=1]
+[ext_resource path="res://actors/piece/scripts/deactivated.gd" type="Script" id=2]
+[ext_resource path="res://actors/piece/scripts/idle.gd" type="Script" id=3]
+[ext_resource path="res://actors/piece/scripts/selected.gd" type="Script" id=4]
+[ext_resource path="res://actors/piece/scripts/move.gd" type="Script" id=5]
+[ext_resource path="res://actors/piece/scripts/dead.gd" type="Script" id=6]
+[ext_resource path="res://common_assets/spritesheets/kenney_nl/spritesheet_items.png" type="Texture" id=7]
+[ext_resource path="res://common_assets/spritesheets/kenney_nl/sheet_white1x.png" type="Texture" id=8]
+[ext_resource path="res://actors/piece/scripts/pointer.gd" type="Script" id=9]
+[ext_resource path="res://actors/piece/scripts/name-label.gd" type="Script" id=10]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 417, 161, 63, 62 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 61, 58, 28, 34 )
+
+[node name="Piece" type="Sprite" groups=[
+"pieces",
+]]
+script = ExtResource( 1 )
+move_speed = 0.25
+
+[node name="States" type="Node" parent="."]
+
+[node name="Deactivated" type="Node" parent="States"]
+script = ExtResource( 2 )
+
+[node name="Idle" type="Node" parent="States"]
+script = ExtResource( 3 )
+
+[node name="Selected" type="Node" parent="States"]
+script = ExtResource( 4 )
+
+[node name="Move" type="Node" parent="States"]
+script = ExtResource( 5 )
+
+[node name="Dead" type="Node" parent="States"]
+script = ExtResource( 6 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+editor/display_folded = true
+input_pickable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+
+[node name="KingCrown" type="Sprite" parent="."]
+visible = false
+scale = Vector2( 0.25, 0.25 )
+texture = SubResource( 1 )
+
+[node name="Pointer" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -22.9431 )
+texture = SubResource( 2 )
+script = ExtResource( 9 )
+
+[node name="Debug" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+
+[node name="NameLabel" type="Label" parent="Debug" groups=[
+"debug",
+]]
+visible = false
+margin_left = -19.0188
+margin_top = -7.01856
+margin_right = 18.9812
+margin_bottom = 6.98144
+text = "Name"
+align = 1
+valign = 1
+script = ExtResource( 10 )
+
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
+[connection signal="input_event" from="KinematicBody2D" to="." method="_on_KinematicBody2D_input_event"]
+[connection signal="mouse_entered" from="KinematicBody2D" to="." method="_on_KinematicBody2D_mouse_entered"]
+[connection signal="mouse_exited" from="KinematicBody2D" to="." method="_on_KinematicBody2D_mouse_exited"]

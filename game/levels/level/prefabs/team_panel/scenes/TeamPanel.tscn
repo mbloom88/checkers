@@ -1,0 +1,125 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://levels/level/prefabs/team_panel/themes/primary.tres" type="Theme" id=1]
+[ext_resource path="res://levels/level/prefabs/team_panel/scripts/team-panel.gd" type="Script" id=2]
+[ext_resource path="res://common_assets/fonts/ARLRDBD.TTF" type="DynamicFontData" id=3]
+[ext_resource path="res://common_assets/sprites/kenney_nl/grey_circle.png" type="Texture" id=4]
+[ext_resource path="res://levels/level/scripts/turn-indicator.gd" type="Script" id=5]
+[ext_resource path="res://levels/level/prefabs/team_panel/animations/turn_indicator/SETUP.tres" type="Animation" id=6]
+[ext_resource path="res://levels/level/prefabs/team_panel/animations/turn_indicator/activated.tres" type="Animation" id=7]
+[ext_resource path="res://levels/level/prefabs/team_panel/animations/turn_indicator/deactivated.tres" type="Animation" id=8]
+[ext_resource path="res://levels/level/scripts/capture-container.gd" type="Script" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+size = 30
+font_data = ExtResource( 3 )
+
+[node name="TeamPanel" type="ColorRect"]
+margin_right = 500.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 500, 500 )
+theme = ExtResource( 1 )
+color = Color( 1, 1, 1, 0.392157 )
+script = ExtResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+custom_constants/separation = 10
+
+[node name="TeamLabel" type="Label" parent="VBoxContainer"]
+margin_right = 480.0
+margin_bottom = 36.0
+custom_fonts/font = SubResource( 1 )
+text = "<Color> Team"
+align = 1
+
+[node name="Spacer" type="Control" parent="VBoxContainer"]
+margin_top = 46.0
+margin_right = 480.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="TurnLabel" type="Label" parent="VBoxContainer"]
+margin_top = 61.0
+margin_right = 480.0
+margin_bottom = 85.0
+text = "Turn"
+align = 1
+
+[node name="TurnIndicator" type="TextureRect" parent="VBoxContainer"]
+margin_left = 215.0
+margin_top = 95.0
+margin_right = 265.0
+margin_bottom = 145.0
+rect_min_size = Vector2( 50, 50 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 4 )
+expand = true
+script = ExtResource( 5 )
+grey_light = "res://common_assets/sprites/kenney_nl/grey_circle.png"
+green_light = "res://common_assets/sprites/kenney_nl/green_circle.png"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="VBoxContainer/TurnIndicator"]
+anims/SETUP = ExtResource( 6 )
+anims/activated = ExtResource( 7 )
+anims/deactivated = ExtResource( 8 )
+
+[node name="Spacer2" type="Control" parent="VBoxContainer"]
+margin_top = 155.0
+margin_right = 480.0
+margin_bottom = 175.0
+rect_min_size = Vector2( 0, 20 )
+
+[node name="CapturesLabel" type="Label" parent="VBoxContainer"]
+margin_top = 185.0
+margin_right = 480.0
+margin_bottom = 209.0
+text = "Captures"
+align = 1
+
+[node name="CaptureContainer" type="GridContainer" parent="VBoxContainer"]
+margin_left = 140.0
+margin_top = 219.0
+margin_right = 340.0
+margin_bottom = 319.0
+rect_min_size = Vector2( 200, 100 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 6
+script = ExtResource( 9 )
+black_texture = "res://levels/level/prefabs/team_panel/scenes/BlackCapturedPiece.tscn"
+red_texture = "res://levels/level/prefabs/team_panel/scenes/RedCapturedPiece.tscn"
+
+[node name="Spacer3" type="Control" parent="VBoxContainer"]
+margin_top = 329.0
+margin_right = 480.0
+margin_bottom = 349.0
+rect_min_size = Vector2( 0, 20 )
+
+[node name="ShowGoal" type="Button" parent="VBoxContainer"]
+margin_left = 165.0
+margin_top = 359.0
+margin_right = 315.0
+margin_bottom = 409.0
+rect_min_size = Vector2( 150, 50 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Show Goal Line"
+
+[node name="ForfeitMatch" type="Button" parent="VBoxContainer"]
+margin_left = 165.0
+margin_top = 419.0
+margin_right = 315.0
+margin_bottom = 469.0
+rect_min_size = Vector2( 150, 50 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Forfeit Match"
+
+[connection signal="pressed" from="VBoxContainer/ShowGoal" to="." method="_on_ShowGoal_pressed"]

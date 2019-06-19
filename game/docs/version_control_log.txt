@@ -1,0 +1,54 @@
+################################################################################
+# CHECKERS
+# VERSION CHANGE LOG
+################################################################################
+
+################################################################################
+# v0.3.0
+################################################################################
+
+[]
+
+################################################################################
+# v0.2.0
+################################################################################
+
+[CHECKERS PIECES]
+
+()	Fixed a bug where pieces were performing a move animation when clicking the
+	board space that they were already positioned in.
+
+() 	Added the ability to King pieces when they reach their respective goal
+	lines.
+
+[GAME BOARD]
+
+() 	Added a rule every turn where pieces that can jump must jump as a movement
+	priority over pieces that can perform a simple move.
+
+[GUI]
+
+() Added a round count to the display.
+
+() Added a turn timer for each piece.
+	
+	-	Each piece generally gets 5 minutes for moving and jumping.
+
+	-	If only one piece can jump on a turn, that piece will have 1 minute
+		to perform the necessary jump(s).
+
+() 	Added an Announcement interface to lead into the start of the game.
+
+()	Added side-panel interfaces for each team.
+
+()	Added blinking goals to the game for each player that can be toggled in
+	each player's respective team panel.
+
+() 	A captured pieces container has been added to each team's panel to track
+	capture scores.
+
+################################################################################
+# v0.1.0
+################################################################################
+
+() Initial release.
